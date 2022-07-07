@@ -40,25 +40,25 @@ def different_calculate(img1,img2):
 #     print(frame1,frame2,diff)
 #     print("#---------------------------------------------#")
 # torch.save(frame_diff,"/home/zhiqiang/project/frame_diff_dict_subway.pkl")
-
-for i in range(0,len(area_new_obj)):
-    frame_diff = {}
-    print([area_new_obj[i][0],area_new_obj[i][2],area_new_obj[i][1],area_new_obj[i][3]])
-    for index in range(1, 600):
-        frame1 = str(index)
-        frame2 = str(index + 1)
-        img1 = cv2.imread(r"/home/zhiqiang/PycharmProjects/efficientdet-pytorch-2.0/img/subway_frame/" + frame1 + ".jpg")
-        img2 = cv2.imread(r"/home/zhiqiang/PycharmProjects/efficientdet-pytorch-2.0/img/subway_frame/" + frame2 + ".jpg")
-        img1 = img1[area_new_obj[i][0]:area_new_obj[i][2], area_new_obj[i][1]:area_new_obj[i][3]]
-        img2 = img2[area_new_obj[i][0]:area_new_obj[i][2], area_new_obj[i][1]:area_new_obj[i][3]]
-        img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-        img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-        diff = different_calculate(img1, img2)
-        frame_diff[index + 1] = diff
-        #print(frame1, frame2, diff)
-    print("#----------compute_end------------#",i)
-    sign=str(i)
-    torch.save(frame_diff, "/home/zhiqiang/project/frame_diff_dict_subway"+sign+".pkl")
+# 对比前后两针，属于差法。
+# for i in range(0,len(area_new_obj)):
+#     frame_diff = {}
+#     print([area_new_obj[i][0],area_new_obj[i][2],area_new_obj[i][1],area_new_obj[i][3]])
+#     for index in range(1, 600):
+#         frame1 = str(index)
+#         frame2 = str(index + 1)
+#         img1 = cv2.imread(r"/home/zhiqiang/PycharmProjects/efficientdet-pytorch-2.0/img/subway_frame/" + frame1 + ".jpg")
+#         img2 = cv2.imread(r"/home/zhiqiang/PycharmProjects/efficientdet-pytorch-2.0/img/subway_frame/" + frame2 + ".jpg")
+#         img1 = img1[area_new_obj[i][0]:area_new_obj[i][2], area_new_obj[i][1]:area_new_obj[i][3]]
+#         img2 = img2[area_new_obj[i][0]:area_new_obj[i][2], area_new_obj[i][1]:area_new_obj[i][3]]
+#         img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+#         img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+#         diff = different_calculate(img1, img2)
+#         frame_diff[index + 1] = diff
+#         #print(frame1, frame2, diff)
+#     print("#----------compute_end------------#",i)
+#     sign=str(i)
+#     torch.save(frame_diff, "/home/zhiqiang/project/frame_diff_dict_subway"+sign+".pkl")
 
 
 # 找到没有目标的基准帧，与基准帧作对比。
